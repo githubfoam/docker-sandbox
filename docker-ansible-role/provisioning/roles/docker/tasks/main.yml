@@ -1,0 +1,24 @@
+---
+# - name: Add /etc/hosts entries
+#   include_tasks: hosts_entry.yml
+#
+# - name: Add /etc/resolv.conf entries
+#   include_tasks: resolv_entry.yml
+- debug:
+    msg: "{{ hostvars[inventory_hostname].ansible_distribution }}"
+- debug:
+    msg: "{{ hostvars[inventory_hostname].ansible_distribution_major_version }}"
+- debug:
+    msg: "{{ hostvars[inventory_hostname].ansible_distribution_version }}"
+
+- name: "Add Debian docker"
+  include_tasks: docker_debian.yml
+  when: " ansible_os_family == 'Debian' and ansible_distribution in ['Debian','Ubuntu'] "
+
+- name: "Add RedHat docker"
+  include_tasks: docker_redhat.yml
+  when: " ansible_os_family == 'RedHat' and ansible_distribution in ['CentOS','Scientific'] "
+
+- name: "Add Fedora docker"
+  include_tasks: docker_fedora.yml
+  when: " ansible_os_family == 'RedHat' and ansible_distribution in ['Fedora'] "
