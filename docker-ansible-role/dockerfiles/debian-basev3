@@ -1,0 +1,4 @@
+FROM debian:wheezy
+MAINTAINER githubfoam
+
+CMD sleep 10
