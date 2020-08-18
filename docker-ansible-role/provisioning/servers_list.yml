@@ -10,7 +10,7 @@
   host_port: 1234
   server_bootstrap: "provisioning/deploy.yml"
   # ansible_version: "2.9.1" 
-  shell_provision: "provisioning/bootstrap.sh"
+  # shell_provision: "provisioning/bootstrap.sh"
   ansible_compatibility_mode: "2.0"
 
 - vagrant_box_host: "vg-docker-02"
