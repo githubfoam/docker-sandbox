@@ -2,7 +2,7 @@
 - vagrant_box_host: "vg-docker-01"
   vagrant_box: "centos/7"
   vbox_name: "vbox-docker-01"
-  vbox_ram: 512
+  vbox_ram: 4096
   vbox_cpu: 2
   network_type: "private_network"
   vagrant_box_ip: 192.168.18.9
@@ -10,6 +10,7 @@
   host_port: 1234
   server_bootstrap: "docker-ansible-role/provisioning/deploy.yml"
   # ansible_version: "2.9.1" 
+  shell_provision: "docker-ansible-role/provisioning/bootstrap.sh"
   ansible_compatibility_mode: "2.0"
 
 - vagrant_box_host: "vg-docker-02"
