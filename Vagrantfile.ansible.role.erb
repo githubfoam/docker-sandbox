@@ -15,6 +15,9 @@ servers_list = YAML.load_file(File.join(File.dirname(__FILE__), 'docker-ansible-
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
  # Disable updates
+
+ config.vm.synced_folder "docker-ansible-role/", "/vagrant"
+
  config.vm.box_check_update = false
 
       servers_list.each do |server|
