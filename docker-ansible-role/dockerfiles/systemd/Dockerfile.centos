@@ -1,0 +1,50 @@
+FROM local/c7-systemd
+MAINTAINER githubfoam
+
+ARG BASEURL_wazuh="https://packages.wazuh.com/3.x/yum/"
+ARG GPGKEY_wazuh="https://packages.wazuh.com/3.x/yum/"
+ARG BASEURL_elastic="https://artifacts.elastic.co/packages/7.x/yum"
+ARG GPGKEY_elastic="https://artifacts.elastic.co/GPG-KEY-elasticsearch"
+
+# Adding the Wazuh repository
+RUN set -x && rpm --import https://packages.wazuh.com/key/GPG-KEY-WAZUH && \
+echo $'[wazuh_repo]\n\
+name=Wazuh repository\n\
+baseurl='$BASEURL_wazuh$'\n\
+gpgcheck=1\n\
+gpgkey='$GPGKEY_wazuh$'\n\
+enabled=1\n\
+protect=1\n '\
+>> /etc/yum.repos.d/wazuh.repo && \
+# updates, install curl
+yum update -y && yum install -y curl  && \
+# install the Wazuh manager
+yum install -y wazuh-manager
+
+# Adding services
+RUN mkdir /etc/service/wazuh
+COPY config/wazuh.runit.service /etc/service/wazuh/run
+RUN chmod +x /etc/service/wazuh/run
+
+# add the official NodeJS repository
+RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -  && \
+# install  NodeJS the Wazuh API
+yum install -y nodejs wazuh-api && \
+# (Optional) Disable the Wazuh repository
+sed -i "s/^enabled=1/enabled=0/" /etc/yum.repos.d/wazuh.repo  && \
+
+# Add the Elastic repository and its GPG key
+rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch && \
+echo $'[elasticsearch-7.x]\n\
+name=Elasticsearch repository for 7.x packages\n\
+baseurl='$BASEURL_elastic$'\n\
+gpgcheck=1\n\
+gpgkey='$GPGKEY_elastic$'\n\
+enabled=1\n\
+autorefresh=1\n\
+type=rpm-md\n '\
+>> /etc/yum.repos.d/elastic.repo && \
+# Install Filebeat
+yum install -y filebeat-7.3.0
+
+CMD ["/bin/bash"]

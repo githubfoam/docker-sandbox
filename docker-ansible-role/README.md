@@ -1,5 +1,31 @@
 # docker-sandbox
 ~~~~
+
+~~~~
+
+~~~~
+$ sudo docker build -t ubuntu:helloworld-v2 . s/Dockerfile.helloworld.execform
+
+[vagrant@vg-docker-01 ~]$ sudo docker run -it ubuntu:helloworld-v2
+Hello docker
+[vagrant@vg-docker-01 ~]$ sudo docker run -it ubuntu:helloworld-v2 betty
+Hello betty
+[vagrant@vg-docker-01 ~]$ sudo docker run -it ubuntu:helloworld-v2 john
+Hello john
+
+~~~~
+~~~~
+$ $ sudo docker build -t ubuntu:helloworld-v1 . --file=/vagrant/dockerfiles/Dockerfile.helloworld.shellform
+
+[vagrant@vg-docker-01 ~]$ sudo docker run -it ubuntu:helloworld-v1 betty
+Hello
+[vagrant@vg-docker-01 ~]$ sudo docker run -it ubuntu:helloworld-v1 john
+Hello
+[vagrant@vg-docker-01 ~]$ sudo docker run -it ubuntu:helloworld-v1
+Hello
+~~~~
+
+~~~~
 vagrant up
 
 $ sudo docker build -t test . --file=/vagrant/dockerfiles/debian-base
@@ -66,4 +92,26 @@ override the command
 $ docker run custom_sleep sleep 15
 
 $ sudo docker build -t custom_sleep . --file=/vagrant/dockerfiles/debian-basev4
+~~~~
+
+~~~~
+$ hostnamectl
+   Static hostname: vg-suricata-02
+         Icon name: computer-vm
+           Chassis: vm
+        Machine ID: b82d4f866da945c7981fffdf2e981a94
+           Boot ID: 04775c36d8b34766bc0fc76191746564
+    Virtualization: oracle
+  Operating System: Debian GNU/Linux 10 (buster)
+            Kernel: Linux 4.19.0-6-amd64
+      Architecture: x86-64
+
+sudo docker build --rm -t local/c7-systemd . --file=/vagrant/dockerfiles/Dockerfile.centos.systemd
+sudo docker build --rm -t local/c7-systemd-httpd . --file=/vagrant/dockerfiles/Dockerfile.apache
+$ sudo docker run -ti -v /sys/fs/cgroup:/sys/fs/cgroup:ro -v /tmp/$(mktemp -d):/run -p 80:80 local/c7-systemd-httpd
+
+curl http://localhost
+
+This container is running with systemd in a limited context, with the cgroups filesystem mounted. There have been reports that if you're using an Ubuntu host, you will need to add -v /tmp/$(mktemp -d):/run in addition to the cgroups mount.
+https://hub.docker.com/_/centos
 ~~~~

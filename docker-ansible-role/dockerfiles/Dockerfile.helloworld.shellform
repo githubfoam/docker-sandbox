@@ -1,0 +1,6 @@
+FROM ubuntu:19.04
+
+ENV name "docker"
+
+ENTRYPOINT echo "Hello"
+CMD ["docker"]

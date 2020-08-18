@@ -1,0 +1,7 @@
+FROM ubuntu:16.04
+# https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#latest-releases-via-apt-ubuntu
+RUN \
+  apt-get update && \
+  apt-get install -y software-properties-common && \
+  sudo apt-add-repository --yes --update ppa:ansible/ansible && \
+  apt-get install -y ansible
