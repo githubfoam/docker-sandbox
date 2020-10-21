@@ -38,7 +38,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
               ansible.compatibility_mode = server["ansible_compatibility_mode"]
               #ansible.version = server["ansible_version"]
               ansible.playbook = server["server_bootstrap"]
-              ansible.verbose = "vvvv" # debug
+              #ansible.verbose = "vvvv" # debug
           end # end if box.vm.provision
           box.vm.provision "shell", path: server["server_script"]
           box.vm.provision "shell", inline: <<-SHELL
