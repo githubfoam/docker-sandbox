@@ -40,10 +40,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
               ansible.playbook = server["server_bootstrap"]
               ansible.verbose = "vvvv" # debug
           end # end if box.vm.provision
-
+          box.vm.provision "shell", path: server["server_script"]
           box.vm.provision "shell", inline: <<-SHELL
           echo "======================================================================================="
-          hostnamectl status
           echo "======================================================================================="
           SHELL
 

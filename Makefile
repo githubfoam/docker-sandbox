@@ -1,9 +1,6 @@
 IMAGE := alpine/fio
 APP:="scripts/usernetes-containerd.sh"
 
-provision-bash-jenkins-ubuntu:
-	bash scripts/provision-bash-jenkins-ubuntu.sh
-
 deploy-boxes:
 	bash scripts/deploy-boxes.sh
 
@@ -13,12 +10,6 @@ deploy-libvirt:
 deploy-vagrant:
 	bash scripts/deploy-vagrant.sh
 
-deploy-packer:
-	bash scripts/deploy-packer.sh
-
-deploy-terraform:
-	bash scripts/deploy-terraform.sh
-	
 push-image:
 	docker push $(IMAGE)
 

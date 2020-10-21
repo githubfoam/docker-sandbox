@@ -31,3 +31,5 @@ echo $(shasum -a 256 -c "vagrant_${VAGRANT_CURRENT_VERSION}_SHA256SUMS" 2>&1 | g
 
 dpkg -i vagrant_${VAGRANT_CURRENT_VERSION}_x86_64.deb
 vagrant version
+
+echo "=============================Install Vagrant============================================================="
