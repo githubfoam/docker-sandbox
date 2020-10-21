@@ -8,9 +8,9 @@
   vagrant_box_ip: 192.168.18.9
   guest_port: 1234
   host_port: 1234
-  server_bootstrap: "provisioning/deploy.yml"
+  server_bootstrap: "docker-ansible-role/provisioning/deploy.yml"
   # ansible_version: "2.9.1" 
-  # shell_provision: "provisioning/bootstrap.sh"
+  # shell_provision: "docker-ansible-role/provisioning/bootstrap.sh"
   ansible_compatibility_mode: "2.0"
 
 # - vagrant_box_host: "vg-docker-02"
