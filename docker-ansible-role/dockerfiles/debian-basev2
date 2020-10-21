@@ -1,4 +1,0 @@
-FROM debian:wheezy
-MAINTAINER githubfoam
-
-ENTRYPOINT ["/bin/cat"]

@@ -1,5 +1,0 @@
-FROM debian:wheezy
-MAINTAINER githubfoam
-
-ENTRYPOINT ["sleep"]
-CMD ["10"]

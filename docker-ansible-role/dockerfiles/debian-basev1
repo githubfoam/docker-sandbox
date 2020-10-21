@@ -1,4 +1,0 @@
-FROM debian:wheezy
-MAINTAINER githubfoam
-
-CMD ["/bin/ping", "localhost"]

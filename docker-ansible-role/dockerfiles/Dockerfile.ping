@@ -1,6 +1,0 @@
-FROM ubuntu:18.10
-
-MAINTAINER githubfoam
-
-ENTRYPOINT ["ping"]
-CMD ["ping"]
