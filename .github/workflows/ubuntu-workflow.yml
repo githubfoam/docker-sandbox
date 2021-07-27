@@ -1,0 +1,54 @@
+name: "Ubuntu dockerized ELK workflow"
+
+
+on:
+  push:
+    branches: [ master ]
+  schedule:
+      - cron:  '0 0 * * 0' #At 00:00 on Sunday every week
+
+jobs:
+
+  ubuntu-1604-virtualenv-job:
+    name: "ubuntu-16.04 virtualenv job"
+    runs-on: ubuntu-16.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status    
+
+
+  ubuntu-1804-virtualenv-job:
+    name: "ubuntu-18.04 virtualenv job"
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status   
+    - name: "python3 virtualenv"
+      run: |
+        pip3 install virtualenv
+        virtualenv -p $(which python3) ~venvpy3
+        source ~venvpy3/bin/activate
+        pip install -r requirements.txt 
+        virtualenv --version
+        pip list
+        deactivate
+
+  ubuntu-2004-virtualenv-job:
+    name: "ubuntu-20.04 virtualenv job"
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status   
+    - name: "python3 virtualenv"
+      run: |
+        pip3 install virtualenv
+        virtualenv -p $(which python3) ~venvpy3
+        source ~venvpy3/bin/activate
+        pip install -r requirements.txt 
+        virtualenv --version
+        deactivate
+
+
