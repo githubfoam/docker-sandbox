@@ -4,6 +4,10 @@ Travis (.com)  branch:
 
 Install Docker Engine
 ~~~
+del Vagrantfile
+vagrant init --template Vagrantfile.ansible.role.erb 
+vagrant up  vg-docker-01
+
 Supported platforms
 https://docs.docker.com/engine/install/
 ~~~
