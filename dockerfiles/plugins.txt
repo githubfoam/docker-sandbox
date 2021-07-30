@@ -1,4 +1,4 @@
-jcasc
+configuration-as-code
 ansible
 sshd
 cloudbees-folder
