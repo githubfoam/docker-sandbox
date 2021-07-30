@@ -10,6 +10,7 @@ Install Docker Engine
 del Vagrantfile
 vagrant init --template Vagrantfile.ansible.role.erb 
 vagrant up  vg-docker-01
+vagrant ssh vg-docker-01 (password:vagrant)
 
 Supported platforms
 https://docs.docker.com/engine/install/
