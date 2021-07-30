@@ -16,7 +16,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: "os fingerprinting"
       run: hostnamectl status    
-
+    - name: "Pull Jenkins from the public repo"
+      run: sudo docker build -t jenkinsci:latest . --file dockerfiles/Dockerfile.plugins            
+    - name: "List images"
+      run: sudo docker image ls 
 
   ubuntu-1804-virtualenv-job:
     name: "ubuntu-18.04 virtualenv job"
@@ -33,6 +36,8 @@ jobs:
         pip install -r requirements.txt 
         virtualenv --version
         pip list
+        sudo docker pull jenkins/jenkins:lts-jdk11 
+        sudo docker image ls
         deactivate
 
   ubuntu-2004-virtualenv-job:
@@ -49,6 +54,8 @@ jobs:
         source ~venvpy3/bin/activate
         pip install -r requirements.txt 
         virtualenv --version
+        sudo docker pull jenkins/jenkins:lts-jdk11 
+        sudo docker image ls
         deactivate
 
 
