@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: "os fingerprinting"
       run: hostnamectl status    
-    - name: "Pull Jenkins from the public repo"
+    - name: "Build jenkins Dockerfile"
       run: sudo docker build -t jenkinsci:latest . --file dockerfiles/Dockerfile.plugins            
     - name: "List images"
       run: sudo docker image ls 
