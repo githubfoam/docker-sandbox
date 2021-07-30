@@ -11,7 +11,7 @@ VAGRANTFILE_API_VERSION = "2"
 # YAML module for reading box configurations.
 require 'yaml'
 #  server configs from YAML/YML file
-servers_list = YAML.load_file(File.join(File.dirname(__FILE__), 'docker-ansible-role/provisioning/servers_list.yml'))
+servers_list = YAML.load_file(File.join(File.dirname(__FILE__), 'provisioning/servers_list.yml'))
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
  # Disable updates

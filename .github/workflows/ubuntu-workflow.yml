@@ -54,7 +54,7 @@ jobs:
         source ~venvpy3/bin/activate
         pip install -r requirements.txt 
         virtualenv --version
-        sudo docker pull jenkins/jenkins:lts-jdk11 
+        sudo docker build -t jenkinsci:latest . --file dockerfiles/Dockerfile.plugins 
         sudo docker image ls
         deactivate
 

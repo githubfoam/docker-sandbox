@@ -1,4 +1,4 @@
-.vagrant
+*.vagrant
 *.tfplan
 *.tfstate
 *.tfstate.backup
